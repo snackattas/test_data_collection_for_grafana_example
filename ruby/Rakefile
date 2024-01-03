@@ -1,18 +1,12 @@
 require 'rake'
 require 'yaml'
-require File.expand_path('../config/environment', __FILE__)
-# require 'rake/testtask'
+require File.expand_path('config/environment', __dir__)
 require 'sinatra/activerecord/rake'
 
-include ActiveRecord::Tasks
-# task default: :test
+include ActiveRecord::Tasks # rubocop:disable Style/MixinUsage
 
 require 'dotenv/tasks'
 task environment: :dotenv
 
 require 'standalone_migrations'
 StandaloneMigrations::Tasks.load_tasks
-
-# root = Pathname.new(__dir__)
-# tasks = File.join(root, 'lib/tasks')
-# Config.require_files(tasks)

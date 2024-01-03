@@ -203,7 +203,6 @@ DEPENDENCIES
   pry
   pry-byebug
   rack
-  rackup
   rake
   rb-readline
   rspec

@@ -1,9 +1,11 @@
 AllCops:
   NewCops: enable
-  TargetRubyVersion: 2.7.1
+  TargetRubyVersion: 3.3.0
   Exclude:
     - Gemfile
     - Gemfile.lock
+    - db/schema.rb
+    - db/migrate/*
 
 # https://gist.github.com/jhass/a5ae80d87f18e53e7b56
 Layout/BeginEndAlignment: # (new in 0.91)
@@ -78,7 +80,7 @@ Lint/UselessMethodDefinition: # (new in 0.90)
 Lint/UselessTimes: # (new in 0.91)
   Enabled: true
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
 
 Metrics/MethodLength:
