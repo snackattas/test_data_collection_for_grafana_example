@@ -1,0 +1,18 @@
+require 'rake'
+require 'yaml'
+require File.expand_path('../config/environment', __FILE__)
+# require 'rake/testtask'
+require 'sinatra/activerecord/rake'
+
+include ActiveRecord::Tasks
+# task default: :test
+
+require 'dotenv/tasks'
+task environment: :dotenv
+
+require 'standalone_migrations'
+StandaloneMigrations::Tasks.load_tasks
+
+# root = Pathname.new(__dir__)
+# tasks = File.join(root, 'lib/tasks')
+# Config.require_files(tasks)

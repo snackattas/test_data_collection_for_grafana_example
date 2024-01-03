@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+ENV['RACK_ENV'] ||= 'development'
+
+require 'bundler'
+require 'dotenv'
+require 'pry'
+require 'amazing_print'
+
+Bundler.require(:default, ENV['RACK_ENV'])
+require File.expand_path('../config/environment', __dir__)
+
+root = Pathname.new(File.expand_path('..', __dir__))
+Dotenv.load(root.join('.env'))
+
+Pry.commands.alias_command 'c', 'continue'
+Pry.commands.alias_command 's', 'step'
+Pry.commands.alias_command 'n', 'next'
+Pry.commands.alias_command 'f', 'finish'
+
+Pry.config.prompt_name = "foodfinity@#{ENV['RACK_ENV']}:pry"
+AmazingPrint.pry!
+Pry.start
+
+# vim: set syntax=ruby:
