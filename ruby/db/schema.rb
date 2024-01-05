@@ -18,10 +18,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_03_021328) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "test_execution", null: false
-    t.string "status"
-    t.integer "parallel_process"
-    t.string "name"
-    t.string "path"
+    t.string "status", null: false
+    t.integer "parallel_process", null: false
+    t.string "name", null: false
+    t.string "path", null: false
     t.string "exception_class"
     t.string "exception_message"
     t.string "exception_traceback"
@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_03_021328) do
     t.text "test_groups", default: [], array: true
     t.string "build_id"
     t.string "branch"
-    t.string "commit_url"
+    t.string "url"
     t.string "commit_author"
     t.string "git_hash"
     t.integer "parallel_processes", default: 1, null: false
@@ -45,6 +45,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_03_021328) do
     t.string "status"
     t.boolean "error"
     t.datetime "finished_at", precision: nil
+    t.index ["build_id", "rerun"], name: "index_test_executions_on_build_id_and_rerun", unique: true
   end
 
 end

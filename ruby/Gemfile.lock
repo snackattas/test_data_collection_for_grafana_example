@@ -43,6 +43,13 @@ GEM
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
     crass (1.0.6)
+    csv (3.2.8)
+    database_cleaner (2.0.2)
+      database_cleaner-active_record (>= 2, < 3)
+    database_cleaner-active_record (2.1.0)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     diff-lcs (1.5.0)
     dotenv (2.8.1)
     drb (2.2.0)
@@ -50,6 +57,9 @@ GEM
     enumerize (2.7.0)
       activesupport (>= 3.2)
     erubi (1.12.0)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.7.1)
@@ -62,7 +72,9 @@ GEM
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     method_source (1.0.0)
+    mini_mime (1.1.5)
     minitest (5.20.0)
+    multi_xml (0.6.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
     mutex_m (0.2.0)
@@ -195,8 +207,11 @@ DEPENDENCIES
   activesupport
   amazing_print
   bundler
+  csv
+  database_cleaner
   dotenv
   enumerize
+  httparty
   oj
   parallel_tests
   pg

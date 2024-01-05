@@ -9,6 +9,8 @@ require 'amazing_print'
 
 Bundler.require(:default, ENV.fetch('RACK_ENV', nil))
 require File.expand_path('../config/environment', __dir__)
+set :run, false
+
 
 root = Pathname.new(File.expand_path('..', __dir__))
 Dotenv.load(root.join('.env'))
