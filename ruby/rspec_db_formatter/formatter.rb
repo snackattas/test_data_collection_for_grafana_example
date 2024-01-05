@@ -7,9 +7,20 @@ class RSpecDBFormatter < RSpec::Core::Formatters::BaseFormatter
                                      :example_pending, :stop, :close
     @@max_wait_for_test_execution_in_s = 60 * 2
 
+    def in_rerun?
+        RSpec.configuration.filter_manager.inclusions.rules[:last_run_status] == "failed"
+    end
+
+    def extract_test_groups
+        rules = RSpec.configuration.filter_manager.inclusions.rules
+        rules.filter { |k,v| k != :last_run_status and v == true }.keys.map { |k| k.to_s }
+    end
+
+    def in_cd?
+        (ENV["CD"] || "false").strip.downcase == "true"
+    end
+
     def initialize(argment)
-        puts "-------------argment in initialize #{argment} class #{argment.class}"
-        # puts argment.methods.join(" ")
         @examples = []
         @passed = 0
         @failed = 0
@@ -22,30 +33,27 @@ class RSpecDBFormatter < RSpec::Core::Formatters::BaseFormatter
         @url = "#{ENV['GITHUB_SERVER_URL']}/#{ENV['GITHUB_REPOSITORY']}/actions/runs/#{ENV['GITHUB_RUN_ID']}"
         @commit_author = ENV["GITHUB_ACTOR"]
         @parallel_process = ENV["TEST_ENV_NUMBER"] || 1
+        @test_groups = extract_test_groups
+        @cd = in_cd?
+        @rerun = in_rerun?
         @test_execution = nil
     end
 
     def start(notification)
-        puts "-------------start... class #{notification.class}"
-       # Get this info from rspec notification object
-
-        test_groups = []
-        cd = false
-        rerun = false
+        return if notification.count == 0  # return early if no tests were collected
         # This will be true if we're not running in parallel tests mode, or, if we are, and it happens to be the first process
         if ParallelTests.first_process?
-            puts 'in first process processor'
             parallel_processes = ENV["TEST_ENV_NUMBER"] ? ParallelTests.number_of_running_processes : 1
             @tests_execution = Models::TestExecutions.create(
-                test_groups: test_groups,
+                test_groups: @test_groups,
                 build_id: @build_id,
                 branch: @branch,
                 url: @url,
                 commit_author: @commit_author,
                 git_hash: @git_hash,
                 parallel_processes: parallel_processes,
-                cd: cd,
-                rerun: rerun,
+                cd: @cd,
+                rerun: @rerun,
                 status: "running"
             )
         else

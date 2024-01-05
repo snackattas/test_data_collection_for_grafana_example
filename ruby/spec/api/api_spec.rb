@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'httparty'
 
-describe "api", test_group: :api do
+describe "api", :api do
     it "tests an api" do
         response = HTTParty.get('https://www.google.com')
         expect(response).to be_success

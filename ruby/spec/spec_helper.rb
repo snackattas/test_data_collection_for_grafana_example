@@ -21,6 +21,7 @@ ENV['RACK_ENV'] = 'test'
 # DatabaseCleaner[:active_record].strategy = :transaction
 
 RSpec.configure do |config|
+  config.example_status_persistence_file_path = '.fails.log'
   config.before(:suite) do |sss|
   end
   config.before(:each) do |t|
