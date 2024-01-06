@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch('DATABASE_POOL', '5') %>
+  connect_timeout: 5
+  checkout_timeout: 5
+  variables:
+      statement_timeout: <%= ENV.fetch('STATEMENT_TIMEOUT', 5000).to_i %>
+
+development:
+  <<: *default
+  pool: <%= (puts ENV['RACK_ENV']) && 5 %>
+  host: localhost
+  database: test_data-development
+
+test:
+  <<: *default
+  host: localhost
+  database: test_data-test-<%= ENV['TEST_ENV_NUMBER'] %>
+
+production:
+  <<: *default
+  database: test_data-production

@@ -1,0 +1,12 @@
+require 'rake'
+require 'yaml'
+require File.expand_path('config/environment', __dir__)
+require 'sinatra/activerecord/rake'
+
+include ActiveRecord::Tasks # rubocop:disable Style/MixinUsage
+
+require 'dotenv/tasks'
+task environment: :dotenv
+
+require 'standalone_migrations'
+StandaloneMigrations::Tasks.load_tasks
