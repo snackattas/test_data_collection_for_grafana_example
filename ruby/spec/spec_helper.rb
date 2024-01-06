@@ -4,6 +4,7 @@ require 'pry'
 require 'pry-byebug'
 require 'amazing_print'
 require 'rspec'
+require_relative '../rspec_db_formatter/ad_hoc_data'
 
 Pry.commands.alias_command 'c', 'continue'
 Pry.commands.alias_command 's', 'step'

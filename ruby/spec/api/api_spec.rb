@@ -5,6 +5,7 @@ describe "api", :api do
     it "tests an api" do
         response = HTTParty.get('https://www.google.com')
         expect(response).to be_success
+        RSpecDBFormatterAdHocData.instance.add_data({response_code: response.code})
     end
 
     it "a pending test" do
