@@ -10,6 +10,7 @@ class CreateTestCases < ActiveRecord::Migration[7.1]
       t.string :exception_class
       t.string :exception_message
       t.string :exception_traceback
+      t.string :pending_message
       t.json :data, default: {}
       t.timestamp :finished_at
     end

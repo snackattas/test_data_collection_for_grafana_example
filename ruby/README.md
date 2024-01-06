@@ -1,0 +1,4 @@
+## Future Enhancements
+* Enhance the database formatter's activerecord calls with a circuit breaker pattern to prioritize informative feedback over abrupt session crashes due to potential database or network hiccups. This ensures developers receive valuable insights into their test runs even when temporary connectivity issues arise.
+* Storing test data in a temporary file during test execution, and write all the data to the database, at the end of the test, or even outside the test harness. Decoupling test execution from database writes can significantly boost test speed, as database interactions often introduce latency.
+* Use enums for the status fields

@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_03_021328) do
     t.string "exception_class"
     t.string "exception_message"
     t.string "exception_traceback"
+    t.string "pending_message"
     t.json "data", default: {}
     t.datetime "finished_at", precision: nil
     t.index ["test_execution"], name: "index_test_cases_on_test_execution"
