@@ -14,6 +14,6 @@ Dotenv.load(root.join('.env'))
 require_relative File.join(root, 'lib', 'models')
 
 Oj.default_options = { mode: :compat, symbol_keys: true, time_format: :ruby }
-ActiveRecord::Base.logger = Logger.new(STDOUT)
+ActiveRecord::Base.logger = Logger.new($stdout)
 LOGLEVELS = %w[DEBUG INFO WARN ERROR FATAL UNKNOWN].freeze
 ActiveRecord::Base.logger.level = :INFO
