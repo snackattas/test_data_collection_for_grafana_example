@@ -4,15 +4,12 @@
 test_groups = %w[api contract end_to_end integration unit]
 num_test_groups_to_use = rand(0...test_groups.length)
 test_groups_to_use = test_groups.sample(num_test_groups_to_use)
-branch = ENV["GITHUB_REF_NAME"]
+branch = ENV["GITHUB_HEAD_REF"]
 CD = branch == "master" ? true : false
 
 puts "Running tests from these test groups: #{test_groups_to_use}"
 puts "Branch: #{branch} CD: #{CD}"
-puts ENV
-puts "#{ENV}"
-puts ENV.to_h
-puts "#{ENV.to_h}"
+
 base_run_command = """
 CD=#{CD} \
 bundle exec parallel_rspec -- \

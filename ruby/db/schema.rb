@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_03_021328) do
     t.text "test_groups", default: [], array: true
     t.string "build_id"
     t.string "branch"
+    t.string "repo"
     t.string "url"
     t.string "commit_author"
     t.string "git_hash"
