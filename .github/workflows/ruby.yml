@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      GITHUB_COMMIT_SHA: ${{ github.sha }}
     steps:
       - uses: actions/checkout@v3
 
