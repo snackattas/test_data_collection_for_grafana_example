@@ -38,7 +38,8 @@ class RSpecDBFormatter < RSpec::Core::Formatters::BaseFormatter
         @build_id = "#{ENV['GITHUB_RUN_ID']}-#{ENV['GITHUB_RUN_ATTEMPT']}"
         @branch = ENV["GITHUB_HEAD_REF"]
         @repo = ENV["GITHUB_REPOSITORY"].split("/")[1..]
-        @git_hash = ENV["GITHUB_COMMIT_SHA"]
+        @git_hash = ENV["GITHUB_SHA"]
+        @repo_owner = ENV["GITHUB_REPOSITORY_OWNER"]
         @url = "#{ENV['GITHUB_SERVER_URL']}/#{ENV['GITHUB_REPOSITORY']}/actions/runs/#{ENV['GITHUB_RUN_ID']}"
         @commit_author = ENV["GITHUB_ACTOR"]
         @parallel_process = get_parallel_process_number
@@ -59,6 +60,7 @@ class RSpecDBFormatter < RSpec::Core::Formatters::BaseFormatter
                     build_id: @build_id,
                     branch: @branch,
                     repo: @repo,
+                    repo_owner: @repo_owner,
                     url: @url,
                     commit_author: @commit_author,
                     git_hash: @git_hash,

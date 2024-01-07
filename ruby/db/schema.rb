@@ -38,6 +38,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_03_021328) do
     t.string "build_id"
     t.string "branch"
     t.string "repo"
+    t.string "repo_owner"
     t.string "url"
     t.string "commit_author"
     t.string "git_hash"
