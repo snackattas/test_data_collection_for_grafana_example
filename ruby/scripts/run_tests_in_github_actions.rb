@@ -9,7 +9,7 @@ CD = branch == "master" ? true : false
 
 puts "Running tests from these test groups: #{test_groups_to_use}"
 puts "Branch: #{branch} CD: #{CD}"
-
+puts ENV
 
 base_run_command = """
 CD=#{CD} \
