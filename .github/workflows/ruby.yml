@@ -31,6 +31,7 @@ jobs:
           bundler-cache: true
 
       - name: Run tests
+        environment: ruby env
         working-directory: ./ruby  # Set working directory directly for clarity
         run: |
           bundle exec ruby ./scripts/run_tests_in_github_actions.rb
