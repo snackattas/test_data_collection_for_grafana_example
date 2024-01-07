@@ -9,8 +9,6 @@ CD = branch == "master" ? true : false
 
 puts "Running tests from these test groups: #{test_groups_to_use}"
 puts "Branch: #{branch} CD: #{CD}"
-puts "SECRET_IN_ENV #{ENV['SECRET_IN_ENV']}"
-puts "REGULAR_ENV_VAR #{ENV['REGULAR_ENV_VAR']}"
 
 base_run_command = """
 CD=#{CD} \
