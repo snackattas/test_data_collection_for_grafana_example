@@ -6,6 +6,8 @@ class CreateTestExecutions < ActiveRecord::Migration[7.1]
       t.string :build_id
       # https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables
       t.string :branch
+      t.string :repo
+      t.string :repo_owner
       t.string :url
       t.string :commit_author
       t.string :git_hash

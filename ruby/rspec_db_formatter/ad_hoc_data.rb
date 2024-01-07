@@ -1,24 +1,24 @@
 require 'singleton'
 
+# Singleton Class meant to be used in specs themselves, to write random data to the test data DB, for ad-hoc analysis
 class RSpecDBFormatterAdHocData
-    include Singleton
+  include Singleton
 
-    def initialize
-        @data = {}
-    end
+  def initialize
+    @_data = {}
+  end
 
-    def add_data(data)
-        if !data.is_a? Hash
-            raise ArgumentError.new("Arg to add_data '#{data}' must be a Hash, cannot be a #{data.class}")
-        end
-        @data = @data.merge(data)
-    end
+  def add_data(hash)
+    raise ArgumentError, "Arg to add_data '#{hash}' must be a Hash, cannot be a #{hash.class}" if !hash.is_a? Hash
 
-    def clear_data
-        @data = {}
-    end
+    @_data = @_data.merge(hash)
+  end
 
-    def get_data
-        @data
-    end
+  def clear_data
+    @_data = {}
+  end
+
+  def data
+    @_data
+  end
 end
