@@ -33,5 +33,5 @@ jobs:
       - name: Run tests
         working-directory: ./ruby  # Set working directory directly for clarity
         run: |
-          bundle exec parallel_rspec -n 2
+          bundle exec ruby ./scripts/run_tests_in_github_actions.rb
 

@@ -73,7 +73,6 @@ class RSpecDBFormatter < RSpec::Core::Formatters::BaseFormatter
         else
             start_time = Time.now
             while Time.now - start_time < @@max_wait_for_test_execution_in_s
-                puts "in while loop parallel_process #{@parallel_process} num collected #{notification.count }"
                 search_args = {build_id: @build_id, rerun: @rerun}
                 test_execution = Models::TestExecutions.select(:id).where(search_args).first()
                 if test_execution
