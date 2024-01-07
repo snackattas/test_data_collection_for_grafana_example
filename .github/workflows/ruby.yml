@@ -19,10 +19,7 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
-    environment: 
-      name: ruby env
-      env:
-        DATABASE_URL: ${{ secrets.DATABASE_URL }}  # Access the secret
+
     steps:
       - uses: actions/checkout@v3
 
